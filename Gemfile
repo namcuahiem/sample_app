@@ -33,6 +33,8 @@ group :doc do
   gem 'sdoc', '~> 0.4.0', require: false
 end
 
+gem 'minitest'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
