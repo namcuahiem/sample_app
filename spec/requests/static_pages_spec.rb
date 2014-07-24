@@ -1,7 +1,12 @@
 require 'spec_helper'
-
+let(:base_title) { "Rails App" } #khai bao bien
 describe "StaticPages" do
 	describe "home page" do
+		it "need to have title home" do
+			visit '/static_pages/home'
+			expect(page).to have_title('#{base_title} | home')
+		end
+
 		it "need to have title home" do
 			visit '/static_pages/home'
 			expect(page).to have_title('Rails App | home')
@@ -19,6 +24,13 @@ describe "StaticPages" do
 		it "need to have title about" do
 			visit '/static_pages/about'
 			expect(page).to have_title('Rails App | about')
+		end
+	end
+
+	describe "contact page" do
+		it "need to have title about" do
+			visit '/static_pages/contact'
+			expect(page).to have_title('Rails App | contact')
 		end
 	end
 end
