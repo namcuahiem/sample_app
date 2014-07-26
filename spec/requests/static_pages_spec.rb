@@ -1,36 +1,47 @@
 require 'spec_helper'
-let(:base_title) { "Rails App" } #khai bao bien
-describe "StaticPages" do
-	describe "home page" do
-		it "need to have title home" do
-			visit '/static_pages/home'
-			expect(page).to have_title('#{base_title} | home')
-		end
 
-		it "need to have title home" do
-			visit '/static_pages/home'
-			expect(page).to have_title('Rails App | home')
-		end
+describe "Static pages" do
+	subject { page }
+
+	describe "home page" do
+		before { visit root_path }
+		it { should have_title('Rails App') }
+		it { should have_selector("h1", text: "Welcome") }
 	end
 
 	describe "help page" do
-		it "need to have title help" do
-			visit '/static_pages/help'
-			expect(page).to have_title('Rails App | help')
-		end
+		before { visit help_path }
+		it { should have_title(full_title('help')) }
+		it { should have_selector("h1", text: "help") }
 	end
 
 	describe "about page" do
-		it "need to have title about" do
-			visit '/static_pages/about'
-			expect(page).to have_title('Rails App | about')
-		end
+		before { visit about_path }
+		it { should have_title(full_title('about')) }
+		it { should have_selector("h1", text: "about") }
 	end
 
 	describe "contact page" do
-		it "need to have title about" do
-			visit '/static_pages/contact'
-			expect(page).to have_title('Rails App | contact')
-		end
+		before { visit contact_path }
+		it { should have_title(full_title('contact')) }
+		it { should have_selector("h1", text: "contact") }
 	end
+
+	it "should have the right links" do
+		visit root_path
+		click_link "About"
+		page.should have_title(full_title('about')) 
+
+		click_link "Help"
+		page.should have_title(full_title('help')) 
+
+		click_link "Home"
+		click_link "Sign up now"
+		page.should have_title(full_title('signup')) 
+
+		click_link "Contact"
+		page.should have_title(full_title('contact')) 
+	end
+
 end
+
