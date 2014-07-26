@@ -1,5 +1,5 @@
 require 'spec_helper'
-
+#test hoat dong cua static pages
 describe "Static pages" do
 	subject { page }
 

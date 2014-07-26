@@ -1,5 +1,5 @@
 require 'spec_helper'
-
+#kiem tra hoat dong cua helper
 describe ApplicationHelper do
 	describe "full_title" do
 		it "should include the page title" do

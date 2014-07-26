@@ -1,5 +1,5 @@
 require 'spec_helper'
-
+#test hoat dong cua user pages
 describe "UserPages" do
 	subject { page }
 	describe "signup page" do
