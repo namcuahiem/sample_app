@@ -8,6 +8,7 @@ describe User do
 	it { should respond_to(:password_digest)}
 	it { should respond_to(:password)} #attribute ảo của class User, tạo ra bới has_secure_password method
 	it { should respond_to(:password_confirmation)} #attribute ảo của class User, tạo ra bới has_secure_password method
+	it { should respond_to(:remember_token)}
 
 	describe "when name is not present" do
 		before { @user.name = " "}
@@ -103,5 +104,10 @@ describe User do
 		describe "wrong password" do
 			it { should_not == current_user.authenticate("otherpassword") }
 		end
+	end
+
+	describe "token should not be blank" do
+		before { @user.save }
+		its(:remember_token) { should_not be_blank }
 	end
 end
