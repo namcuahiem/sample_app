@@ -3,7 +3,7 @@ module SessionsHelper
 		remember_token = User.new_remember_token
 		cookies.permanent[:remember_token] = remember_token
 		user.update_attribute(:remember_token, User.digest(remember_token))
-		self.current_user = user
+		self.current_user = user #khoi tao bien current_user
 	end
 
 	def current_user=(user)
@@ -19,13 +19,12 @@ module SessionsHelper
 		user == current_user
 	end
 
-	def is_admin?(user)
-		if user.admin?
-			true
-		else
-			false
-		end
-	end
+    def signed_in_user
+    	unless signed_in?
+      		store_location
+      		redirect_to signin_url, notice: session[:return_to] 
+      	end
+    end
 
 	def signed_in?
 		!current_user.nil?
