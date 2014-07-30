@@ -4,15 +4,9 @@
 <%= will_paginate %>
 
 <div class="users">
-	<table>
-		<tr>
-			<th>Name</th>
-			<th>Email</th>
-		</tr>
 		<% @users.each do |user| %>
 			<%= render user %>
 		<% end %>
-	</table>
 </div>
 
 <%= will_paginate %>

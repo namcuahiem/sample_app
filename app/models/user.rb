@@ -1,5 +1,14 @@
 class User < ActiveRecord::Base
 	has_many :microposts, dependent: :destroy
+	
+	has_many :relationships, foreign_key: "follower_id", dependent: :destroy
+	has_many :followed_users, through: :relationships, source: :followed
+
+	has_many :reverse_relationships, foreign_key: "followed_id", class_name: "Relationship", dependent: :destroy
+	has_many :followers, through: :reverse_relationships, source: :follower
+
+	validates :follower_id, presence: true
+	validates :followed_id, presence: true
 
 	#before_save { |user| user.email = user.email.downcase }
 	before_save { self.email = email.downcase }
@@ -23,8 +32,21 @@ class User < ActiveRecord::Base
 	end
 
 	def feed
-	# This is preliminary. See "Following users" for the full implementation.
-		Micropost.where("user_id = ?", id)
+		# This is preliminary. See "Following users" for the full implementation.
+		#Micropost.where("user_id = ?", id)
+		Micropost.from_users_followed_by(self)
+	end
+
+	def following?(someone)
+		self.relationships.find_by(followed_id: someone.id)
+	end
+
+	def follow!(someone)
+		self.relationships.create!(followed_id: someone.id)
+	end
+
+	def unfollow!(someone)
+		self.relationships.find_by(followed_id: someone.id).destroy
 	end
 
 	private

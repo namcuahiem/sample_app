@@ -133,7 +133,7 @@ aside {
       text-align: left;
       letter-spacing: -1px;
       margin-bottom: 3px;
-      margin-top: 30px;
+      margin-top: 10px;
     }
     p {
       font-size: 1em;
@@ -148,6 +148,50 @@ aside {
   width: 40%;
   border-radius: 50%;
 }
+
+.stats {
+  overflow: auto;
+  a {
+    float: left;
+    padding: 0 10px;
+    border-left: 1px solid $grayLighter;
+    color: gray;
+    &:first-child {
+      padding-left: 0;
+      border: 0;
+    }
+    &:hover {
+      text-decoration: none;
+      color: $blue;
+    }
+  }
+  strong {
+    display: block;
+  }
+}
+
+.user_avatars {
+  overflow: auto;
+  margin-top: 10px;
+  .gravatar {
+    margin: 1px 1px;
+  }
+}
+
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-top: 1px solid $grayLighter;
+    &:last-child {
+      border-bottom: 1px solid $grayLighter;
+    }
+  }
+}
+
 
 /* miscellaneous */
 
@@ -206,11 +250,12 @@ border:1px solid black;
 }
 .content {
   display: block;
+  word-break: break-word;
 }
 .timestamp {
   color: $grayLight;
 }
-.gravatar {
+.gravatar2 {
   float: left;
   margin-right: 10px;
 }
@@ -220,3 +265,4 @@ aside {
     margin-bottom: 5px;
   }
 }
+

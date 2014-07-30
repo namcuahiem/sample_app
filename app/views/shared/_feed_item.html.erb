@@ -1,4 +1,5 @@
 <li id="<%= feed_item.id %>">
+	<%= link_to image_tag("tantai.jpg", alt: "Avatar", class: 'gravatar2', size: '52x52'), feed_item.user %>
 	<span class='user'>
 		<%= link_to feed_item.user.name, feed_item.user %>
 	</span>
